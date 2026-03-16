@@ -1,8 +1,8 @@
 FROM alpine
-WORKDIR /app
+WORKDIR /opt/mtproxy
 EXPOSE 2398 443
-COPY run.sh /app
-RUN chmod +x /app/run.sh
-COPY objs/bin/mtproto-proxy /app
-RUN chmod +x /app/mtproto-proxy
-ENTRYPOINT ["/app/run.sh"]
+COPY run.sh /opt/mtproxy
+RUN chmod +x /opt/mtproxy/run.sh
+COPY objs/bin/mtproto-proxy /opt/mtproxy
+RUN chmod +x /opt/mtproxy/mtproto-proxy
+ENTRYPOINT ["/opt/mtproxy/run.sh"]
