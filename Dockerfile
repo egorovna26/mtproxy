@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM alpine
 WORKDIR /app
 EXPOSE 2398
 EXPOSE 443
