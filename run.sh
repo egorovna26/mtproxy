@@ -96,4 +96,4 @@ echo "[*]   Make sure to fix the links in case you run the proxy on a different 
 echo
 echo '[+] Starting proxy...'
 sleep 1
-exec /app/mtproto-proxy --http-stats -p 2398 -H 443 -M "$WORKERS" -C 60000 --aes-pwd proxy-secret -u root $CONFIG --allow-skip-dh --nat-info "$INTERNAL_IP:$IP" $SECRET_CMD $TAG_CMD
+exec ./mtproto-proxy --http-stats -p 2398 -H 443 -M "$WORKERS" -C 60000 --aes-pwd proxy-secret -u root $CONFIG --allow-skip-dh --nat-info "$INTERNAL_IP:$IP" $SECRET_CMD $TAG_CMD
