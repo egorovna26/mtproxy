@@ -57,15 +57,21 @@ if [[ ! -z "$TAG" ]]; then
   fi
 fi
 
-curl -s https://core.telegram.org/getProxySecret -o proxy-secret || {
-  echo '[F] Cannot download proxy secret from Telegram servers.'
-  exit 2
-}
+if [ ! -f proxy-secret ]; then
+  echo "Downloading proxy secret..."
+  curl -s https://core.telegram.org/getProxySecret -o proxy-secret || {
+    echo '[F] Cannot download proxy secret from Telegram servers.'
+    exit 2
+  }
+fi
 
-curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf || {
-  echo '[F] Cannot download proxy configuration from Telegram servers.'
-  exit 2
-}
+if [ ! -f proxy-multi.conf ]; then
+  echo "Downloading proxy config..."
+  curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf || {
+    echo '[F] Cannot download proxy configuration from Telegram servers.'
+    exit 2
+  }
+fi
 CONFIG=proxy-multi.conf
 
 IP="$(curl -s -4 "https://digitalresistance.dog/myIp")"
