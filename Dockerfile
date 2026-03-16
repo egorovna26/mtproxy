@@ -5,4 +5,4 @@ COPY run.sh /app
 RUN chmod +x /app/run.sh
 COPY objs/bin/mtproto-proxy /app
 RUN chmod +x /app/mtproto-proxy
-ENTRYPOINT ["run.sh"]
+ENTRYPOINT ["/app/run.sh"]
