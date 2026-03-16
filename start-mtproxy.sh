@@ -68,14 +68,14 @@ if sudo docker ps | grep -q ${CONTAINER_NAME}; then
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     
     # Сохраняем конфигурацию
-    cat > ~/mtproto_config.txt << EOF
+    cat > ~/${CONTAINER_NAME} << EOF
 SERVER=${SERVER_IP}
 PORT=${PORT}
 SECRET=${SECRET}
 DOMAIN=${FAKE_DOMAIN}
 LINK=tg://proxy?server=${SERVER_IP}&port=${PORT}&secret=${SECRET}
 EOF
-    echo "✅ Конфигурация сохранена в ~/mtproto_config.txt"
+    echo "✅ Конфигурация сохранена в ~/${CONTAINER_NAME}"
     
     # Показываем последние логи
     echo ""
