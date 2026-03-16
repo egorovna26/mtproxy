@@ -43,7 +43,7 @@ head -c 16 /dev/urandom | xxd -ps
 ```
 4. Run `mtproto-proxy`:
 ```bash
-./mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> --aes-pwd proxy-secret proxy-multi.conf -M 1
+./mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> --aes-pwd proxy-secret proxy-multi.conf -M 1 --http-stats
 ```
 ... where:
 - `nobody` is the username. `mtproto-proxy` calls `setuid()` to drop privileges.
@@ -52,6 +52,7 @@ head -c 16 /dev/urandom | xxd -ps
 - `<secret>` is the secret generated at step 3. Also you can set multiple secrets: `-S <secret1> -S <secret2>`.
 - `proxy-secret` and `proxy-multi.conf` are obtained at steps 1 and 2.
 - `1` is the number of workers. You can increase the number of workers, if you have a powerful server.
+- `--http-stats` is allow http server to answer on stats queries.
 
 Also feel free to check out other options using `mtproto-proxy --help`.
 
@@ -83,7 +84,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/MTProxy
-ExecStart=/opt/MTProxy/mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> -P <proxy tag> <other params>
+ExecStart=/opt/MTProxy/mtproto-proxy -u nobody -p 8888 -H 443 --http-stats -S <secret> -P <proxy tag> <other params>
 Restart=on-failure
 
 [Install]
