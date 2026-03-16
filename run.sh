@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 if [ -z "$WORKERS" ]; then
   WORKERS=2
 fi
