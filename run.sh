@@ -65,13 +65,12 @@ if [ ! -f proxy-secret ]; then
   }
 fi
 
-if [ ! -f proxy-multi.conf ]; then
-  echo "Downloading proxy config..."
-  curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf || {
-    echo '[F] Cannot download proxy configuration from Telegram servers.'
-    exit 2
-  }
-fi
+echo "Downloading proxy config..."
+curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf || {
+  echo '[F] Cannot download proxy configuration from Telegram servers.'
+  exit 2
+}
+
 CONFIG=proxy-multi.conf
 
 IP="$(curl -s -4 "https://digitalresistance.dog/myIp")"
